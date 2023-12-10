@@ -44,29 +44,31 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Comprobar Contraseña</title>
-        <link rel="stylesheet" href="../../style/style.css">
+        <link rel="stylesheet" href="../../../style/style.css">
+        <style>
+            .codigo{
+                display: grid;
+                place-items: center;
+            }
+        </style>
     </head>
     <body>
-    <div class="formulario">
         <?php
             require '../cabecera.php';
         ?>
-            <h1>Inicio Sesión</h1>
+        <div class="codigo">
+            <h1>Comprobar contraseña</h1>
             <!-- formulario de inicio de sesión. Cuando se pulsa el botón se lo auto envía con el método post -->
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                <div class="usarname">
-                 <!-- Si se ha equivocado le pone el email introducido  -->
-                    <h5><?php echo $_SESSION['usuario']['nombre'] . " " . $_SESSION['usuario']['apellidos'];?></h5>
-                </div>
-                <div class="usarname">
-                    <input type="password" name="clave" required>
-                    <label>Contraseña</label>
-                </div>
+                <h5><?php echo $_SESSION['usuario']['nombre']?></h5>
+                <input type="password" name="clave" required>
+                <label>Contraseña: </label>
+                <br>
                 <input type="submit" value="Comprobar contraseña">
                 <div class="erroresOtros">
                     <?php
                         if (isset($contrasenaMal)) {
-                            echo "<p>La contraseña no es correcta</p>";
+                            echo "<p><b>La contraseña no es correcta</b></p>";
                         }
                     ?>
                 </div>

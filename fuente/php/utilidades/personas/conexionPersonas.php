@@ -1,10 +1,11 @@
 <?php
-     /**
-     * Devuelve la configuración necesaria para conectarse a una base de datos 
-     * @param string $nombre 
-     * @param string $esquema
-     * @return array devuelve un array que contiene la cadena para conectarse a una base de datos
-     */
+    // Pongo aquí leerConfig y en los demás porque me estaba dando error a la hora de importarlo
+    /**
+    * Se va encargar de leer un xml y lo va a validar mediante un xsd. Saca la información del xml como la ip, nombre, usuario y la clave
+    * @param string $nombre Nombre del xml
+    * @param string $esquema Nombre del xsd
+    * @return array Devuelve un array que contiene la cadena, el usuario y la clave para conectarse a una base de datos
+    */
     function leerConfigPer($nombre, $esquema) {
         // crea un nuevo obejto DOMDocument
         $config = new DOMDocument();
@@ -42,13 +43,13 @@
 
     /**
      * Inserta un usuario a la base de datos
-     * @param string $nombre
-     * @param string $apellidos
-     * @param string $direccion
-     * @param string $telefono
-     * @param string $contrasena
-     * @param string $email
-     * @param string $fechaNac
+     * @param string $nombre Nombre del usuario
+     * @param string $apellidos Apellidos del usuario
+     * @param string $direccion Dirección donde vive el usuario
+     * @param string $telefono Teléfono de contacto del usuario
+     * @param string $contrasena Contraseña del usuario
+     * @param string $email Correo del usuario
+     * @param string $fechaNac Fecha de nacimiento del usuario
      */
     function insertarUsuario($nombre, $apellidos, $direccion, $telefono, $contrasena, $email, $fechaNac){
         $configuracion = leerConfigPer(dirname(__FILE__)."/../../../xml/configuracion.xml", dirname(__FILE__)."/../../../xml/squema.xsd");

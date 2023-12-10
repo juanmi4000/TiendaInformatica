@@ -93,30 +93,31 @@
                     });
                 </script>
                 <input class="inputSubmit" type="submit" value="Iniciar">
-                <div class="erroresOtros">
-                    <?php 
-                        if (isset($_GET['redirigido'])) {
-                            echo "<p>Haga login para continuar</p>";
-                        }
-                        if(isset($err) and $err == true){
-                            echo "<p> Revise su usuario y contraseña</p>";
-                        }
-                        // se comprueba que ha pasado si ha intentado registrarse 
-                        if(isset($_GET['existe'])){
-                                echo "<p> El usuario que has intentado registrar ya existe</p>";
-                        }
-                        if (isset($_GET['noExiste'])) {
-                            echo "<p> Te has registrado correctamente</p>";    
-                        }
-                        if(isset($_GET['cerrarSesion'])){
-                            unset($_SESSION['usuario']);
-                            echo "<p> Se ha cerrado correctamente la sesión</p>";
-                        }
-                    ?>
-                </div>
                 <div class="registrarse">
                     <!-- Dirige al fichero de registrarse -->
                     <p>No tengo una cuenta: <a href="./php/usuario/registrarse.php">Crear cuenta</a></p>
+                </div>
+                <div class="erroresOtros">
+                    <?php 
+                        if (isset($_GET['redirigido'])) {
+                            echo "<p><b>Haga login para continuar</b></p>";
+                        }
+                        if(isset($err) and $err == true){
+                            echo "<p><b>Revise su usuario y contraseña</b></p>";
+                        }
+                        // se comprueba que ha pasado si ha intentado registrarse 
+                        if(isset($_GET['existe'])){
+                                echo "<p><b>El usuario que has intentado registrar ya existe</b></p>";
+                        }
+                        if (isset($_GET['noExiste'])) {
+                            echo "<p><b>Te has registrado correctamente</b></p>";    
+                        }
+                        if(isset($_GET['cerrarSesion'])){
+                            $usuario = '';
+                            unset($_SESSION['usuario']);
+                            echo "<p><b>Se ha cerrado correctamente la sesión</b></p>";
+                        }
+                    ?>
                 </div>
             </form>
         </div>

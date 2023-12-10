@@ -111,6 +111,7 @@ CREATE TABLE `productos`
     `descripcion` text not null,
     `categoria` int not null,
     `modelo` varchar(40),
+    `peso` float not null,
     `precioUnitario` float not null,
     `iva` int not null,
     `stock` int not null,
@@ -123,9 +124,9 @@ ALTER TABLE `productos`
 
 
 -- inserto valores en la tabla productos
-INSERT INTO `productos` (`nombre`, `descripcion`, `categoria`, `modelo`, `precioUnitario`, `iva`, `stock`)
+INSERT INTO `productos` (`nombre`, `descripcion`, `categoria`, `modelo`, `peso`, `precioUnitario`, `iva`, `stock`)
 VALUES
-("PS5", "Consola creada por Sony para disfrutar un videojuego", 1, "slim", 400.00, 21, 0);
+("PS5", "Consola creada por Sony para disfrutar un videojuego", 1, "slim", 2.00, 400.00, 21, 0);
 
 -- tabla compras: PK --> idCompra, FK --> productoId - proveedorId
 CREATE TABLE `compras`

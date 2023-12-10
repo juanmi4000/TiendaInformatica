@@ -23,66 +23,74 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Modificar proveedores</title>
         <link rel="stylesheet" href="../../../style/style.css">
+        <style>
+            .codigo{
+                display: grid;
+                place-items: center;
+            }
+        </style>
     </head>
     <body>
         <?php
             require '../cabecera.php';
         ?>
-        <button onclick="location.href = 'crearProveedor.php'">
-            <img class="img-header" src="../../../multimedia/img/mas.png">
-            Nuevo Proveedor
-        </button>
-        <?php
-            if (isset($_GET['eleminado'])) {
-                if ($_GET['eleminado']) {
-                    echo "<p>El producto se ha eliminado correctamente</p>";
-                } else {
-                    echo "<p>Ha ocurrido un error. El producto no se ha eliminado</p>";
-                }
-            } 
-            if (isset($_GET['insertado'])) {
-                if ($_GET['insertado']) {
-                    echo "<p>El producto se ha insertado correctamente</p>";
-                } else {
-                    echo "<p>Ha ocurrido un error. El producto no se ha eliminado</p>";
-                }
-            }
-            
-        ?>
-        <table>
-            <tr>
-                <th>Nombre</th>
-                <th>Razón Social</th>
-                <th>Dirección</th>
-                <th>Telefono</th>
-                <th>Correo</th>
-                <th>Eliminar</th>
-            </tr>
+        <div class="codigo">
+            <button onclick="location.href = 'crearProveedor.php'">
+                <img class="img-header" src="../../../multimedia/img/mas.png">
+                Nuevo Proveedor
+            </button>
             <?php
-                foreach ($proveedores as $proveedor) {
-                    $idProveedor = $proveedor['idProveedor'];
-                    $nombre = $proveedor['nombre'];
-                    $razonSocial = $proveedor['razonSocial'];
-                    $direccion = $proveedor['direccion'];
-                    $telefono = $proveedor['telefono'];
-                    $email = $proveedor['email'];
+                if (isset($_GET['eleminado'])) {
+                    if ($_GET['eleminado']) {
+                        echo "<p><b>El producto se ha eliminado correctamente</b></p>";
+                    } else {
+                        echo "<p><b>Ha ocurrido un error. El producto no se ha eliminado</b></p>";
+                    }
+                } 
+                if (isset($_GET['insertado'])) {
+                    if ($_GET['insertado']) {
+                        echo "<p><b>El producto se ha insertado correctamente</b></p>";
+                    } else {
+                        echo "<p><b>Ha ocurrido un error. El producto no se ha eliminado</b></p>";
+                    }
+                }
+                
+            ?>
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Razón Social</th>
+                    <th>Dirección</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
+                    <th>Eliminar</th>
+                </tr>
+                <?php
+                    foreach ($proveedores as $proveedor) {
+                        $idProveedor = $proveedor['idProveedor'];
+                        $nombre = $proveedor['nombre'];
+                        $razonSocial = $proveedor['razonSocial'];
+                        $direccion = $proveedor['direccion'];
+                        $telefono = $proveedor['telefono'];
+                        $email = $proveedor['email'];
 
-                    echo "<tr>
-                        <td>$nombre</td>
-                        <td>$razonSocial</td>
-                        <td>$direccion</td>
-                        <td>$telefono</td>
-                        <td>$email</td>
-                        <td>";
-            ?>
-                            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method='post'>
-                                <input type='submit' name = "eliminar" value='Eliminar'>
-                                <input type='hidden' name='id' value="<?php echo $idProveedor;?>">
-                            </form>
-            <?php
-                        echo "</td></tr>";
-                }
-            ?>
-        </table>
+                        echo "<tr>
+                            <td>$nombre</td>
+                            <td>$razonSocial</td>
+                            <td>$direccion</td>
+                            <td>$telefono</td>
+                            <td>$email</td>
+                            <td>";
+                ?>
+                                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method='post'>
+                                    <input type='submit' name = "eliminar" value='Eliminar'>
+                                    <input type='hidden' name='id' value="<?php echo $idProveedor;?>">
+                                </form>
+                <?php
+                            echo "</td></tr>";
+                    }
+                ?>
+            </table>
+        </div>
     </body>
 </html>

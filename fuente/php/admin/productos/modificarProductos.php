@@ -17,7 +17,7 @@
                 unset($_SESSION['eliminar']);
                 return;
             } elseif (isset($_SESSION['crear'])) {
-                $resul = insertarProducto($_SESSION['crear'][0], $_SESSION['crear'][1], $_SESSION['crear'][2], $_SESSION['crear'][3], $_SESSION['crear'][4], $_SESSION['crear'][5], $_SESSION['crear'][6]);
+                $resul = insertarProducto($_SESSION['crear'][0], $_SESSION['crear'][1], $_SESSION['crear'][2], $_SESSION['crear'][3], $_SESSION['crear'][4], $_SESSION['crear'][5], $_SESSION['crear'][6], $_SESSION['crear'][7]);
                 if ($resul) {
                     header("Location: productosAdmin.php?insertado=true");
                     unset($_SESSION['crear']);
@@ -26,14 +26,14 @@
                 }
                 unset($_SESSION['crear']);
                 return;
-            } elseif (isset($_SESSION['cambiarStock'])) {
-                $resul = actualizarProducto($_SESSION['cambiarStock'][0], $_SESSION['cambiarStock'][1]);
+            } elseif (isset($_SESSION['compra'])) {
+                $resul = realizarCompra($_SESSION['compra'][0], $_SESSION['compra'][1], $_SESSION['compra'][2], $_SESSION['compra'][3], $_SESSION['compra'][4]);
                 if ($resul) {
                     header("Location: productosAdmin.php?actualizado=true");
                 } else {
                     header("Location: productosAdmin.php?actualizado=false");
                 }
-                unset($_SESSION['cambiarStock']);
+                unset($_SESSION['compra']);
             }
         } else {
             $contrasenaMal = true;
@@ -47,29 +47,31 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Comprobar Contraseña</title>
-        <link rel="stylesheet" href="../../style/style.css">
+        <link rel="stylesheet" href="../../../style/style.css">
+        <style>
+            .codigo{
+                display: grid;
+                place-items: center;
+            }
+        </style>
     </head>
     <body>
-    <div class="formulario">
         <?php
             require '../cabecera.php';
         ?>
-            <h1>Inicio Sesión</h1>
+        <div class="codigo">
+            <h1>Comprobar contraseña</h1>
             <!-- formulario de inicio de sesión. Cuando se pulsa el botón se lo auto envía con el método post -->
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                <div class="usarname">
-                 <!-- Si se ha equivocado le pone el email introducido  -->
-                    <h5><?php echo $_SESSION['usuario']['nombre'] . " " . $_SESSION['usuario']['apellidos'];?></h5>
-                </div>
-                <div class="usarname">
-                    <input type="password" name="clave" required>
-                    <label>Contraseña</label>
-                </div>
+                <h5><?php echo $_SESSION['usuario']['nombre'];?></h5>
+                <label>Contraseña: </label>
+                <input type="password" name="clave" required>
+                <br>
                 <input type="submit" value="Comprobar contraseña">
                 <div class="erroresOtros">
                     <?php
                         if (isset($contrasenaMal)) {
-                            echo "<p>La contraseña no es correcta</p>";
+                            echo "<p><b>La contraseña no es correcta</b></p>";
                         }
                     ?>
                 </div>

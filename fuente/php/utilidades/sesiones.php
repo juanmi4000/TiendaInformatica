@@ -1,5 +1,7 @@
 <?php
-    // se inicia sesión y comprueba si el usuario está registrado, sino lo manda al login
+    /**
+     * Comprueba si se ha iniciado sesión, sino lo manda a la página del login
+     */
     function comprobarSesion(){
         session_start();
         if (!isset($_SESSION['usuario'])) {

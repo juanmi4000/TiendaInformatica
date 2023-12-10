@@ -1,6 +1,6 @@
 <?php
     require_once '../utilidades/sesiones.php';
-    require_once '../utilidades/conexiones.php';
+    require_once '../utilidades/productos/conexionProductos.php';
     comprobarSesion();
 ?>
 
@@ -21,45 +21,49 @@
                 exit;
             }
         ?>
-        <h2>Carrito de la compra</h2>;
+        <h2>Carrito de la compra</h2> 
         <table>
             <tr>
                 <th>Nombre</th>
-                <th>Modelo</th>
                 <th>Descripción</th>
                 <th>Categoría</th>
-                <th>Precio Unidad</th>
-                <th>Stock</th>
+                <th>Modelo</th>
+                <th>Peso</th>
+                <th>Precio(€)*</th>
+                <th>IVA</th>
+                <th>Unidades</th>
                 <th>Eliminar</th>
             </tr>
             <?php
-                foreach ($productos as $productos) {
-                    $codigo = $producto['idProducto'];
-                    $nombre = $producto['nombre'];
-                    $modelo = $producto['modelo'];
-                    $descripcion = $producto['descripción'];
-                    $categoria = $producto['categoria'];
-                    $precio = $producto['precio'] * ($producto ['iva'] / 100);
-                    $unidades = $_SESSION['carrito'][$cod];
+                foreach ($productos as $producto) {
+                    $idProducto = $producto['idProducto'];
+			        $nombre = $producto['nombre'];
+			        $descripcion = $producto['descripcion'];
+			        $catego = $producto['categoria'];
+			        $modelo = $producto['modelo'];
+			        $peso = $producto['peso'];
+			        $iva = $producto['iva'];
+                    $precio = $producto['precioUnitario'] * (1 + ($iva / 100));
+                    $unidades = $_SESSION['carrito'][$idProducto];
 
                     echo "
                         <tr>
                             <td>$nombre</td>
+                            <td>$descripcion</td>
+                            <td>$catego</td>
                             <td>$modelo</td>
-                            <td>$descripción</td>
-                            <td>$categoria</td>
+                            <td>$peso</td>
                             <td>$precio</td>
+                            <td>$iva</td>   
                             <td>$unidades</td>
                             <td>
-                                <form action = 'eliminar.php' method = 'post'>
-                                    <input type='number' name='unidades' min = '1' value = '1'>
+                                <form action = 'eliminar.php' method = 'POST'>
+                                    <input type='number' name='unidades' min = '1' value = '1' max = '$unidades'>
                                     <input type='submit' value = 'Eliminar'>
-                                    <input type='hidden' name = 'cod' value = '$cod'>
+                                    <input type='hidden' name = 'id' value = '$idProducto'>
                                 </form>
                             </td>
-                        </tr>
-                    ";
-
+                        </tr>";
                 }
             ?>
         </table>

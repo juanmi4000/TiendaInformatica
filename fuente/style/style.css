@@ -11,8 +11,9 @@ nav{
 a{
     text-decoration: none; 
 }
+
 table tr, td{
-    padding: 20px;
+    padding: 10px;
 }
 
 a:hover{
@@ -37,3 +38,4 @@ ul li{
     width: 12px;
     height: 12px;
 }
+

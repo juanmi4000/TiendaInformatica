@@ -11,7 +11,7 @@ Continuamos con la descarga del proyecto y una vez instalado XAMPP se va a crear
 - **Windows**: C:\xampp\htdocs\docs
 - **Linux**: /opt/lampp/htdocs/docs 
 
-Metemos el proyecto dentro de **docs**. El siguiente paso es poner en un navegador **localhost/docs/ProyectoFinalTema4/fuente**. Por defecto se va a crear un administrador y un usuario:
+Metemos el proyecto dentro de **docs**. Ahora nos tenemos que meter en **localhost/phpmyadmin** y habre en el menú una opción que pone **SQL**. Continuamos copiando el archivo con extensión **.sql** que trae el archivo y lo pegamos en en apartado en blanco destinado a ejecutar SQL. Una vez pegado le damos a **Go**. El siguiente paso es poner en un navegador **localhost/docs/ProyectoFinalTema4/fuente**. Por defecto se va a crear un administrador y un usuario:
 - **Administrador** --> correo: admin@gmail.com, contraseña: admin
 - **Usuario** --> correo: usuario@gmail.com, contraseña: 1234
 
@@ -66,7 +66,8 @@ Define un producto y un producto va a estar asociado a una categoría. Se crea u
 - **nombre**
 - **descripcion**
 - **categoria**: llave foránea de la tabla categorias (idCategoría)
-- **modelo**:
+- **modelo**
+- **peso**
 - **precioUnitario**:
 - **iva**
 - **stock**
